@@ -13,9 +13,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with rgtk.  If not, see <http://www.gnu.org/licenses/>.
 
-use gtk;
+use gtk::enums::GtkOrientation;
 use gtk::traits::GtkWidget;
+use utils::cast::GTK_ORIENTABLE;
+use ffi;
 
-pub fn to_entry(widget: &GtkWidget) -> gtk::Entry {
-    GtkWidget::wrap_widget(widget.get_widget())
+pub trait GtkOrientable: GtkWidget {
+    fn get_orientation(&self) -> GtkOrientation {
+        unsafe {
+            ffi::gtk_orientable_get_orientation(GTK_ORIENTABLE(self.get_widget()))
+        }
+    }
+
+    fn set_orientation(&mut self, orientation: GtkOrientation) -> () {
+        unsafe {
+            ffi::gtk_orientable_set_orientation(GTK_ORIENTABLE(self.get_widget()), orientation)
+        }
+    }
 }

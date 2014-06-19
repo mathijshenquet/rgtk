@@ -13,9 +13,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with rgtk.  If not, see <http://www.gnu.org/licenses/>.
 
-use gtk;
+use libc::{c_void};
+
 use gtk::traits::GtkWidget;
 
-pub fn to_entry(widget: &GtkWidget) -> gtk::Entry {
-    GtkWidget::wrap_widget(widget.get_widget())
+
+pub trait Signal: GtkWidget {
+    fn connect(&mut self, signal: &str, function: fn()) -> ();
+    fn connect_2p<B>(&mut self, signal: &str, function: fn(&mut Self, *c_void), user_data: Option<&B>) -> () ;
+    fn connect_2p_widget<B: GtkWidget>(&mut self, signal: &str, function: fn(&mut Self, Option<&mut GtkWidget>), user_data: Option<&B>) -> () ;
 }

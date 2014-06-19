@@ -13,9 +13,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with rgtk.  If not, see <http://www.gnu.org/licenses/>.
 
-use gtk;
+use std::str;
+use ffi;
 use gtk::traits::GtkWidget;
+use utils::cast::GTK_WINDOW;
 
-pub fn to_entry(widget: &GtkWidget) -> gtk::Entry {
-    GtkWidget::wrap_widget(widget.get_widget())
+pub trait GtkWindow : GtkWidget {
+    fn set_title(&mut self, title: &str) -> () {
+        unsafe {
+            title.with_c_str(|c_str| {
+                ffi::gtk_window_set_title(GTK_WINDOW(self.get_widget()), c_str)
+            });
+        }
+    }
+
+    fn get_title(&self) -> Option<String> {
+        let c_title = unsafe { ffi::gtk_window_get_title(GTK_WINDOW(self.get_widget())) };
+        if c_title.is_null() {
+            None
+        } else {
+            Some(unsafe { str::raw::from_c_str(c_title) })
+        }
+    }
 }

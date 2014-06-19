@@ -13,9 +13,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with rgtk.  If not, see <http://www.gnu.org/licenses/>.
 
-use gtk;
-use gtk::traits::GtkWidget;
+use gtk::traits::{GtkWidget, GtkContainer};
 
-pub fn to_entry(widget: &GtkWidget) -> gtk::Entry {
-    GtkWidget::wrap_widget(widget.get_widget())
+pub trait GtkBin: GtkWidget + GtkContainer {
+    // fn get_child(&self) ->  {
+
+    // }
 }
+
+    // pub fn gtk_bin_get_child                   (bin: *C_GtkBin) -> *C_GtkWidget;

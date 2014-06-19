@@ -13,9 +13,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with rgtk.  If not, see <http://www.gnu.org/licenses/>.
 
-use gtk;
-use gtk::traits::GtkWidget;
+// NB: This file is not actually packaged into rgtk
 
-pub fn to_entry(widget: &GtkWidget) -> gtk::Entry {
-    GtkWidget::wrap_widget(widget.get_widget())
+use gtk::traits::{GtkWidget};
+use ffi;
+use gtk;
+
+pub struct Widget {
+    pointer:           *ffi::C_GtkWidget
+}
+
+impl Widget {
+    pub fn wrap(pointer: *ffi::C_GtkWidget) -> Widget {
+        Widget {
+            pointer: pointer
+        }
+    }
+
+    pub fn to_entry(self) -> gtk::Entry {
+        GtkWidget::wrap_widget(self.pointer)
+    }
 }

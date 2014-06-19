@@ -119,25 +119,24 @@ __rgtk__ is available under the same license term than GTK+, the LGPL (Lesser Ge
 extern crate libc;
 
 // traits reexports
-pub use traits::GtkWidget;
-pub use traits::GtkWindow;
-pub use traits::GtkContainer;
-pub use traits::GtkMisc;
-pub use traits::GtkButton;
-pub use traits::GtkLabel;
-pub use traits::GtkBox;
-pub use traits::GtkOrientable;
-pub use traits::GtkFrame;
-pub use traits::GtkToggleButton;
-pub use traits::GtkEntry;
-pub use traits::GtkToolShell;
-pub use traits::GtkBin;
-pub use traits::GtkScaleButton;
-pub use traits::GtkToolItem;
-pub use traits::GtkToolButton;
-pub use traits::GtkToggleToolButton;
-
-pub use traits::Signal;
+pub use gtk::traits::GtkWidget;
+pub use gtk::traits::GtkWindow;
+pub use gtk::traits::GtkContainer;
+pub use gtk::traits::GtkMisc;
+pub use gtk::traits::GtkButton;
+pub use gtk::traits::GtkLabel;
+pub use gtk::traits::GtkBox;
+pub use gtk::traits::GtkOrientable;
+pub use gtk::traits::GtkFrame;
+pub use gtk::traits::GtkToggleButton;
+pub use gtk::traits::GtkEntry;
+pub use gtk::traits::GtkToolShell;
+pub use gtk::traits::GtkBin;
+pub use gtk::traits::GtkScaleButton;
+pub use gtk::traits::GtkToolItem;
+pub use gtk::traits::GtkToolButton;
+pub use gtk::traits::GtkToggleToolButton;
+pub use gtk::traits::Signal;
 
 // reexport enums
 pub use gtk::enums::*;
@@ -166,7 +165,6 @@ mod platform {
 }
 
 pub mod utils;
-pub mod traits;
 pub mod gtk;
 pub mod gdk;
 pub mod glib;
