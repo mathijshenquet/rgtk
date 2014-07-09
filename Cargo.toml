@@ -2,7 +2,7 @@
 name = "rgtk"
 version = "0.0.1"
 authors = ["letang.jeremy@gmail.com", "mathijs.henquet@gmail.com", "guillaume1.gomez@gmail.com"]
-build = "make glue"
+build = "./configure && make glue"
 
 [[lib]]
 name = "rgtk"
