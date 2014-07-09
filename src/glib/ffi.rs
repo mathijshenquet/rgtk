@@ -37,6 +37,8 @@ pub struct C_GError {
     pub message: *mut c_char
 }
 
+pub struct C_GObject;
+
 extern "C" {
 
     //=========================================================================
@@ -94,6 +96,8 @@ extern "C" {
     pub fn g_list_position                (list: *mut C_GList, link_: C_GList) -> c_int;
     // pub fn g_slist_index                   (list: *C_GSList, data: *c_void) -> c_int;
 
+
+
     //=========================================================================
     // GError
     //=========================================================================
@@ -109,4 +113,10 @@ extern "C" {
     pub fn g_clear_error                  (err: *mut *mut C_GError) -> ();
     //pub fn g_prefix_error                 (err: **C_GError, format: *c_char, ...) -> ();
     //pub fn g_propagate_prefixed_error     (dest: **C_GError, src: *C_GError, format: *c_char, ...) -> ();
+
+    //=========================================================================
+    // GObject
+    //=========================================================================
+    pub fn g_object_ref(object: *mut C_GObject) -> *mut C_GObject;
+    pub fn g_object_unref(object: *mut C_GObject);
 }
